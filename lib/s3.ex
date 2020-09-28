@@ -29,8 +29,8 @@ defmodule S3 do
       |> String.trim()
       |>IO.inspect()
 
-    case File.read("elixir.png") do
-      {:ok, content} -> ExAws.S3.put_object("s3-elixir-s3","images/elixir.png", content)
+    case File.read(image) do
+      {:ok, content} -> ExAws.S3.put_object("s3-elixir-s3","images/#{image}", content)
                         |> ExAws.request!()
       {:error, reason} -> IO.puts(reason)
       end
