@@ -15,4 +15,9 @@ defmodule S3 do
   def hello do
     :world
   end
+
+  def s3ls do
+    ExAws.S3.list_buckets() |> ExAws.request!() |> get_in([:body, :buckets])
+  end
+
 end
