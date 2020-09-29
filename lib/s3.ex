@@ -12,14 +12,16 @@ defmodule S3 do
       :world
 
   """
-  def hello do
-    :world
+  def runlambda do
+    ExAws.Lambda.invoke("exawstest", %{},%{},[]) |> ExAws.request!()
   end
-
-  def bucketsls do
+  def lambdals do
+    ExAws.Lambda.list_functions() |> ExAws.request!()
+  end
+  def bucketls do
     ExAws.S3.list_buckets() |> ExAws.request!() |> get_in([:body, :buckets])
   end
-  def objectsls(bucket) do
+  def objectls(bucket) do
     ExAws.S3.list_objects(bucket) |> ExAws.request!() |> get_in([:body, :contents])
   end
 
@@ -34,6 +36,10 @@ defmodule S3 do
                         |> ExAws.request!()
       {:error, reason} -> IO.puts(reason)
       end
-      # ExAws.S3.put_object("s3elixirs3", "images/elixir.png", image)
-  end
+
+ end
+  #def invoke(payload) do
+  #   ExAws.Lambda.invoke("aws-ses-lambda-v1", payload, "no_context")
+  #   |> ExAws.request(region: System.get_env("AWS_REGION"))
+  # end
 end

@@ -23,7 +23,9 @@ defmodule S3.MixProject do
     [
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
+      {:ex_aws_lambda, "~> 2.0"},
       {:hackney, "~> 1.15"},
+      {:poison, "~> 3.0"},
       {:sweet_xml, "~> 0.6"},
       {:jason, "~> 1.1"},
     ]
