@@ -18,6 +18,9 @@ defmodule S3 do
   def lambdals do
     ExAws.Lambda.list_functions() |> ExAws.request!()
   end
+  def getowner do
+    S3.runlambda|> Map.get("maplist")|>Enum.at(0)|>Map.get("first")
+  end
   def bucketls do
     ExAws.S3.list_buckets() |> ExAws.request!() |> get_in([:body, :buckets])
   end
