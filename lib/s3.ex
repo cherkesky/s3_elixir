@@ -12,6 +12,10 @@ defmodule S3 do
       :world
 
   """
+  def ecsls do
+    ExAws.ECS.list_clusters |> ExAws.request!()|>Map.get("clusterArns")
+  end
+
   def runlambda do
     ExAws.Lambda.invoke("exawstest", %{},%{},[]) |> ExAws.request!()
   end
